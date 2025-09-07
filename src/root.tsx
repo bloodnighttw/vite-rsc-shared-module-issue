@@ -1,4 +1,4 @@
-import { Counter } from './counter'
+import { Button } from './button'
 
 async function getPosts() {
   let glob = import.meta.glob('./posts/*.mdx', { eager: true })
@@ -56,7 +56,7 @@ export async function Root({ url }: { url: URL }) {
           <h1>
             <a href="/">RSC + MDX + SSG</a>
           </h1>
-          <Counter />
+          <Button />
           <span data-testid="timestamp">
             Rendered at {new Date().toISOString()}
           </span>

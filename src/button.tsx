@@ -4,7 +4,7 @@
 
 const load = (await import('./framework/loader')).default
 
-export function Counter() {
+export function Button() {
 
   return (
     <button onClick={()=> load("/test.rsc")}>Press me to preload rsc</button>
