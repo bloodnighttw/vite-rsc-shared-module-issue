@@ -1,40 +1,21 @@
 import { Button } from './button'
 
-async function getPosts() {
-  let glob = import.meta.glob('./posts/*.mdx', { eager: true })
-  glob = Object.fromEntries(
-    Object.entries(glob).map(([k, v]) => [
-      k.slice('./posts'.length, -'.mdx'.length),
-      v,
-    ]),
-  )
-  return glob
-}
 
 export async function getStaticPaths() {
-  const posts = await getPosts()
-  return ['/', ...Object.keys(posts)]
+  return ['/']
 }
 
 export async function Root({ url }: { url: URL }) {
-  const posts = await getPosts()
 
   async function RootContent() {
     if (url.pathname === '/') {
       return (
-        <ul>
-          {Object.entries(posts).map(([key, value]) => (
-            <li key={key}>
-              <a href={key} style={{ textTransform: 'capitalize' }}>
-                {(value as any).title ?? key.slice(1)}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div>
+          hello world!
+        </div>
       )
     }
 
-    const module = posts[url.pathname]
     if (!!module) {
       const Component = (module as any).default
       return <Component />
